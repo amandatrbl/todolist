@@ -1,0 +1,17 @@
+{% block content %}
+
+<form method="post" enctype="multipart/form-data"></form>
+    {% csrf_token %}
+    <h1>Editar Tarefa</h1>
+    <table>
+      {{ form.as_table }}
+    </table>
+    <div>
+      <div class="buttons-container">
+        <input type="submit" value="Salvar Alterações" >
+        <a href="{% url 'lista' %}" class="btn btn-secondary">Cancelar</a>
+      </div>
+    </div>
+  </form>
+
+{% endblock %}

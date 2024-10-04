@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TodoList Fofinho 🐻💕</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+        }
+
+        body {
+            background-color: #FFEBF0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: #FF69B4;
+        }
+
+        .container {
+            background-color: #FFFFFF;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            width: 350px;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .input-section {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        input {
+            padding: 10px;
+            border-radius: 20px;
+            border: 2px solid #FF69B4;
+            flex-grow: 1;
+            margin-right: 10px;
+            font-size: 16px;
+        }
+
+        button {
+            background-color: #FF69B4;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 16px;
+            padding: 3px;
+        }
+
+        button:hover {
+            background-color: #FFB6C1;
+        }
+
+        ul {
+            list-style-type: none;
+        }
+
+        li {
+            background-color: #FFF0F5;
+            padding: 10px;
+            border-radius: 10px;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 18px;
+        }
+
+        li .concluida {
+            text-decoration: line-through;
+            color: #B0B0B0;
+        }
+
+        li button {
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
+            font-size: 20px;
+            color: #FF69B4;
+        }
+
+        li button:hover {
+            color: #FFB6C1;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🌸 Lista de Tarefas Fofinha 🌸</h1>
+
+        <div class="input-section">
+            <input type="text" id="novaTarefa" placeholder="Digite sua nova tarefinha..." />
+            <button id="adicionarBtn">Adicionar 💖</button>
+        </div>
+
+        <ul id="listaTarefas"></ul>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const listaTarefas = document.getElementById("listaTarefas");
+            const adicionarBtn = document.getElementById("adicionarBtn");
+            const novaTarefaInput = document.getElementById("novaTarefa");
+
+            // Função para adicionar uma nova tarefa
+            function adicionarTarefa() {
+                const tarefa = novaTarefaInput.value.trim();
+                if (tarefa === "") {
+                    alert("Por favor, digite uma tarefa! 💖");
+                    return;
+                }
+
+                const li = document.createElement("li");
+                li.innerHTML = `
+                    <span>${tarefa}</span>
+                    <button class="concluirBtn">✅</button>
+                    <button class="removerBtn">❌</button>
+                `;
+
+                // Marcar tarefa como concluída
+                li.querySelector(".concluirBtn").addEventListener("click", () => {
+                    li.querySelector("span").classList.toggle("concluida");
+                });
+
+                // Remover tarefa
+                li.querySelector(".removerBtn").addEventListener("click", () => {
+                    li.remove();
+                });
+
+                listaTarefas.appendChild(li);
+                novaTarefaInput.value = "";
+            }
+
+            // Adicionar tarefa ao clicar no botão
+            adicionarBtn.addEventListener("click", adicionarTarefa);
+
+            // Adicionar tarefa ao pressionar "Enter"
+            novaTarefaInput.addEventListener("keydown", (event) => {
+                if (event.key === "Enter") {
+                    adicionarTarefa();
+                }
+            });
+        });
+    </script>
+</body>
+</html>
